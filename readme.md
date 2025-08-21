@@ -17,7 +17,7 @@ php -S localhost:8000
 1. 瀏覽器開啟 `http://localhost:8000/wp-admin`
 2. 登入管理後台
 3. 到 `設定` → `永久連結`
-4. **選擇任何一個選項，不要選「樸素」**（建議選「文章名稱」）
+4. **選擇任何一個選項，不要選「預設」**（建議選「文章名稱」）
 5. 點擊 `儲存變更`
 
 > ⚠️ **重要**：不設定永久連結的話，REST API 將無法正常工作！
@@ -269,9 +269,13 @@ function delete_item($request) {
 ```
 
 ### 2. 啟用外掛
-1. 到 WordPress 管理後台：`外掛` → `已安裝的外掛`
-2. 找到 "My CRUD API" 並點擊 `啟用`
-3. 啟用時會自動建立資料表 `wp_my_items`
+1. 到 WordPress 管理後台 `http://localhost:8000/wp-admin`
+2. 左側選單：`外掛` → `已安裝的外掛`
+3. 找到 "My CRUD API" 外掛
+4. 點擊外掛下方的 `啟用` 連結
+5. 啟用時會自動建立資料表 `wp_my_items`
+
+> **注意**：如果沒看到外掛，檢查檔案路徑是否正確：`wp-content/plugins/my-api/my-api.php`
 
 ---
 
@@ -339,7 +343,7 @@ URL: http://localhost:8000/wp-json/myapi/v1/items/1
 
 ### 1. API 回傳 HTML 頁面而非 JSON
 - **原因**：永久連結設定問題
-- **解決**：到 `設定` → `永久連結`，選擇任何非「樸素」選項並儲存
+- **解決**：到 `設定` → `永久連結`，選擇任何非「預設」選項並儲存
 
 ### 2. 新增/更新時回傳 "No data provided"
 - **原因**：Content-Type header 未設定或 Body 格式錯誤
